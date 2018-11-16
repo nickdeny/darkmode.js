@@ -1,0 +1,35 @@
+body {
+	color: #152121;
+	background-color: #fff;
+}
+
+header {
+	border-bottom: 1px solid #f1f1f3;
+}
+
+#mode {
+	background-color: #ffd456;
+}
+
+footer {
+	border-top: 1px solid #f1f1f3;
+}
+
+.btn {
+	border: 1px solid #ddd;
+}
+
+.btn:hover {
+	background-color: #f1f3f7;
+	border-color: #152121;
+}
+
+pre {
+	background-color: #f8f8f8;
+	-webkit-box-shadow: 9999px 0 0 0 #f8f8f8;
+	box-shadow: 9999px 0 0 0 #f8f8f8;
+}
+
+code {
+	color: #333;
+}

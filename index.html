@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	 <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>DarkModeJS – nickdeny</title>
+  <meta name="description" content="Pure Javascript, without any plugins and jQuery">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DarkModeJS – nickdeny">
+  <meta property="og:url" content="https://nickdeny.com">
+  <meta property="og:description" content="Pure Javascript, without any plugins and jQuery">
+  <meta property="product:brand" content="nickdeny">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<noscript>
+		<link rel="stylesheet" type="text/css" href="light.css">
+	</noscript>
+</head>
+<body>
+	<header class="container">
+		<h1>DarkModeJS</h1>
+		<p>Pure Javascript, without any plugins and jQuery</p>
+	</header>
+	<main class="container">
+		<p>
+			Lightweight DarkModeJS helps you to auto detect user's time and switch theme to darkside 👀
+			<br/>
+			You're using <span id="mode"></span> theme now
+		</p>
+		<div class="main-btns">
+			<button id="toggle" class="btn btn--brand">
+				Toggle theme
+			</button>
+		</div>
+		<p>
+			Just copy-paste this code to end of body tag
+		</p>
+<pre><code>&lt;script src="darkmode.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  var options = {
+    light: 'light.css',
+    dark: 'dark.css',
+    startAt: '23:00',
+    endAt: '06:00'
+  };
+  var DarkMode = new DarkMode(options);
+&lt;/script&gt;</code></pre>
+		<p>
+			To display light theme for non-javascript user just copy-paste it to head
+		</p>
+<pre><code>&lt;noscript&gt;
+  &lt;link rel="stylesheet" type="text/css" href="light.css"&gt;
+&lt;/noscript&gt;</code></pre>
+		<p>
+			Links
+		</p>
+		<div class="main-btns">
+			<a class="btn btn--brand" href="https://github.com/nickdeny/darkmode-js" target="_blank">
+				Code on GitHub
+			</a>
+			<a class="btn" href="https://nickdeny.com/?utm_source=darkmodejs&utm_medium=author&utm_campaign=github_landing" target="_blank">
+				Author's Website
+			</a>
+			<a class="btn" href="mailto:hello@nickdeny.com">
+				Contact
+			</a>
+		</div>
+	</main>
+	<footer class="container">
+		By nickdeny
+	</footer>
+
+	<script src="darkmode.js"></script>
+	<script>
+		var options = {
+			light: 'light.css',
+			dark: 'dark.css',
+			startAt: '23:00',
+			endAt: '06:00',
+			theme: 'dark'
+		};
+
+		var DarkMode = new DarkMode(options);
+		document.getElementById('mode').innerHTML = DarkMode.getMode();
+		document.getElementById('toggle').onclick = function() {
+			DarkMode.toggleTheme();
+			document.getElementById('mode').innerHTML = DarkMode.getMode();
+		}
+	</script>
+</body>
+</html>

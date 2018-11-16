@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css?family=Merienda+One|Montserrat:400,400i,700');
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-size: 16px;
+	width: 100vw;
+	line-height: 1.55;
+	font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+	margin: 0;
+	font-size: 64px;
+	line-height: 1;
+	font-family: 'Merienda One', cursive;
+}
+
+@media(max-width: 767px) {
+	h1 {
+		font-size: 36px;
+	}
+}
+
+.container {
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	max-width: 960px;
+}
+
+header {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding: 15px 0;
+}
+
+pre {
+	margin: 15px 0 15px -9999px;
+	padding: 15px 0 15px 9999px;
+	-ms-overflow-style: scrollbar;
+}
+
+code {
+	font-size: 14px;
+	line-height: 1.6;
+	display: block;
+	overflow-x: auto;
+	font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+header p {
+	margin: 5px 0 0 0;
+	font-size: 15px;
+	font-style: italic;
+	color: #aaa;
+}
+
+main {
+	display: flex;
+	flex-flow: column wrap;
+}
+
+p {
+	margin: 15px 0;
+}
+
+.main-btns {
+	margin: -5px;
+}
+
+.main-btns > * {
+	margin: 5px;
+}
+
+#mode {
+	padding: 3px 6px;
+	text-transform: uppercase;
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+footer {
+	margin-top: 30px;
+	padding: 15px 0;
+	color: #aaa;
+	font-size: 13px;
+}
+
+.btn {
+	display: inline-block;
+	text-align: center;
+	color: inherit;
+	font-size: 14px;
+	line-height: 1;
+	background-color: inherit;
+	white-space: nowrap;
+	font-weight: bold;
+	padding: 8px 16px;
+	border-radius: 25px;
+	cursor: pointer;
+	text-decoration: none;
+	appearance: none;
+	transition: all .15s ease;
+}
+
+.btn:hover {
+	transition: all .15s ease;
+}
+
+.btn:active {
+	color: inherit;
+}
+
+.btn--brand {
+	color: #152121;
+	background-color: #3bc4fb;
+	border-color: #3bc4fb;
+}
+
+.btn--brand:hover {
+	background-color: #05a1e0;
+	border-color: #05a1e0;
+}

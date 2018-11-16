@@ -6,6 +6,7 @@ You can test on: https://nickdeny.github.io/darkmode-js/
 
 ## Documentation
 Just copy-paste this code to end of body tag
+```
 <script src="darkmode.js"></script>
 <script>
   var options = {
@@ -16,6 +17,14 @@ Just copy-paste this code to end of body tag
   };
   var DarkMode = new DarkMode(options);
 </script>
+```
+
+To display light theme for non-javascript user just copy-paste it to head (if you separate themes into light/dark stylesheets):
+```
+<noscript>
+  <link rel="stylesheet" type="text/css" href="light.css">
+</noscript>
+```
 
 ### Options
 Option | Description | Default | Type

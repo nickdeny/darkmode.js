@@ -1,7 +1,8 @@
 # DarkModeJS
-Lightweight and cross-browser DarkModeJS helps you to auto detect user's time and switch theme to darkside
+Lightweight and cross-browser DarkModeJS helps you to auto detect user's time and switch theme to darkside. Also, it's weight only 2,4kb and written on pure Javascript, without any plugins and jQuery!
 
-Also, it's weight only 2,4kb and written on pure Javascript, without any plugins and jQuery
+## Demo
+You can test on: https://nickdeny.github.io/darkmode-js/
 
 ## Documentation
 Just copy-paste this code to end of body tag
@@ -17,8 +18,13 @@ Just copy-paste this code to end of body tag
 </script>
 
 ### Options
-`light` – path to light stylesheet, default is `false`
-`dark` – path to dark stylesheet, default is `false`
-`startAt` – time to start Dark theme, default is `21:00`
-`endAt` – time to start Dark theme, default is `06:00`
-`theme` – set theme to 'light' or 'dark', default is `false`
+Option | Description | Default | Type
+--- | --- | --- | ---
+light | Path to light stylesheet | `false` | String / Boolean
+dark | Path to dark stylesheet | `false` | String / Boolean
+startAt | Time to start Dark theme | 21:00 | String
+endAt | Time to end Dark theme | 06:00 | String
+theme | Set theme to `light` or `dark` | `false` | String / Boolean
+
+## Author
+nickdeny – [https://nickdeny.com/](https://nickdeny.com/?utm_source=darkmodejs&utm_medium=author&utm_campaign=github_repo)

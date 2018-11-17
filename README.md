@@ -37,3 +37,5 @@ theme | Set theme to `light` or `dark` | `false` | String / Boolean
 
 ## Author
 nickdeny – [https://nickdeny.com/](https://nickdeny.com/?utm_source=darkmodejs&utm_medium=author&utm_campaign=github_repo)
+
+Read us on Telegram[RU] – [https://t.me/webdevblog](http://bit.ly/2RSYBuk)

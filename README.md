@@ -29,7 +29,7 @@ checkSystemScheme | Check [System Scheme](https://developer.mozilla.org/en-US/do
 saveOnToggle | Save current Mode on Toggle (Local Storage) | `true` | Boolean
 
 ### Events
-Option | Description
+Event | Description
 --- | ---
 `getMode()` | Get current Mode
 `setMode(light/dark)` | Set Mode

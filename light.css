@@ -3,25 +3,18 @@ body {
 	background-color: #fff;
 }
 
-header {
-	border-bottom: 1px solid #f1f1f3;
+#mode-toggler {
+	color: #fff;
+	background-color: #252526;
 }
 
-#mode {
-	background-color: #ffd456;
-}
-
+header,
 footer {
-	border-top: 1px solid #f1f1f3;
+	background-color: #f8f8f8;
 }
 
-.btn {
-	border: 1px solid #ddd;
-}
-
-.btn:hover {
-	background-color: #f1f3f7;
-	border-color: #152121;
+.header-description {
+	color: #aaa;
 }
 
 pre {

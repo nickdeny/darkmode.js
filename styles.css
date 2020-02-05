@@ -1,15 +1,22 @@
-@import url('https://fonts.googleapis.com/css?family=Merienda+One|Montserrat:400,400i,700');
+@import url('https://fonts.googleapis.com/css?family=Merienda+One|Montserrat:400,500,500i,600,700');
 
-* {
+*,
+*:before,
+*:after {
 	box-sizing: border-box;
 }
 
 body {
 	margin: 0;
-	font-size: 16px;
+	font-size: 18px;
 	width: 100vw;
 	line-height: 1.55;
 	font-family: 'Montserrat', sans-serif;
+}
+
+header {
+	padding-top: 60px;
+	padding-bottom: 30px;
 }
 
 h1 {
@@ -19,10 +26,98 @@ h1 {
 	font-family: 'Merienda One', cursive;
 }
 
-@media(max-width: 767px) {
-	h1 {
-		font-size: 36px;
-	}
+h2 {
+	display: inline-block;
+	position: relative;
+	margin: 0 0 20px 0;
+	font-size: 32px;
+	line-height: 1;
+}
+
+h2:before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	height: 6px;
+	width: 72px;
+	background-color: #3bc4fb;
+	z-index: -1;
+}
+
+h3 {
+	margin: 0;
+	font-size: 20px;
+}
+
+main p {
+	margin: 0 0 15px 0;
+	max-width: 640px;
+}
+
+.header-description {
+	margin: 20px 0 0 0;
+	font-weight: 500;
+	font-size: 16px;
+	letter-spacing: .5px;
+	font-style: italic;
+}
+
+main {
+	padding-top: 100px;
+}
+
+section {
+	padding-bottom: 100px;
+	margin-bottom: -30px;
+}
+
+footer {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.footer-copyright {
+	margin: 0;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.footer-copyright a {
+	color: inherit;
+}
+
+#mode-toggler {
+	position: fixed;
+	bottom: 30px;
+	right: 30px;
+	font-size: 22px;
+	padding: 15px 30px;
+	border-radius: 50px;
+	letter-spacing: .5px;
+	font-weight: 700;
+	border: 0;
+}
+
+.btn {
+	display: inline-block;
+	cursor: pointer;
+	padding: 8px 16px;
+	border: 2px solid #3bc4fb;
+	font-weight: 600;
+	text-transform: uppercase;
+	font-size: 18px;
+	line-height: 1;
+	color: inherit;
+	background-color: transparent;
+	text-decoration: none;
+	white-space: nowrap;
+	user-select: none;
+	transition: all .15s ease;
+}
+
+.btn:hover {
+	background-color: #3bc4fb;
 }
 
 .container {
@@ -31,99 +126,63 @@ h1 {
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
-	max-width: 960px;
-}
-
-header {
-	margin-top: 15px;
-	margin-bottom: 15px;
-	padding: 15px 0;
+	max-width: 830px;
 }
 
 pre {
-	margin: 15px 0 15px -9999px;
-	padding: 15px 0 15px 9999px;
+	margin: 0 0 30px -9999px;
+	padding: 30px 0 30px 9999px;
 	-ms-overflow-style: scrollbar;
 }
 
 code {
 	font-size: 14px;
-	line-height: 1.6;
+	line-height: 1.8;
 	display: block;
 	overflow-x: auto;
 	font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-header p {
-	margin: 5px 0 0 0;
-	font-size: 15px;
-	font-style: italic;
-	color: #aaa;
-}
-
-main {
+.contacts-btns {
+	padding: 0 0 30px 0;
+	margin: -10px;
 	display: flex;
-	flex-flow: column wrap;
+	flex-flow: row wrap;
+	align-items: center;
 }
 
-p {
-	margin: 15px 0;
+.contacts-btns > li {
+	list-style: none;
+	padding: 10px;
 }
 
-.main-btns {
-	margin: -5px;
-}
+@media(max-width: 767px) {
+	body {
+		font-size: 16px;
+	}
 
-.main-btns > * {
-	margin: 5px;
-}
+	h1 {
+		font-size: 36px;
+	}
 
-#mode {
-	padding: 3px 6px;
-	text-transform: uppercase;
-	font-weight: bold;
-	border-radius: 5px;
-}
+	h2 {
+		font-size: 28px;
+	}
 
-footer {
-	margin-top: 30px;
-	padding: 15px 0;
-	color: #aaa;
-	font-size: 13px;
-}
+	h3 {
+		font-size: 18px;
+	}
 
-.btn {
-	display: inline-block;
-	text-align: center;
-	color: inherit;
-	font-size: 14px;
-	line-height: 1;
-	background-color: inherit;
-	white-space: nowrap;
-	font-weight: bold;
-	padding: 8px 16px;
-	border-radius: 25px;
-	cursor: pointer;
-	text-decoration: none;
-	appearance: none;
-	transition: all .15s ease;
-}
+	#mode-toggler {
+		font-size: 20px;
+		padding: 10px 20px;
+	}
 
-.btn:hover {
-	transition: all .15s ease;
-}
+	main {
+		padding-top: 50px;
+	}
 
-.btn:active {
-	color: inherit;
-}
-
-.btn--brand {
-	color: #152121;
-	background-color: #3bc4fb;
-	border-color: #3bc4fb;
-}
-
-.btn--brand:hover {
-	background-color: #05a1e0;
-	border-color: #05a1e0;
+	section {
+		padding-bottom: 50px;
+	}
 }

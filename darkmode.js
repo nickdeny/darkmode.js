@@ -1,24 +1,20 @@
-var head = document.getElementsByTagName('head')[0],
-    body = document.getElementsByTagName('body')[0];
-
-(function( root, factory ) {
-  var pluginName = 'DarkMode';
+;(function(root, factory) {
+  var pluginName = 'DarkMode'
   if (typeof define === 'function' && define.amd)
-    define([], factory(pluginName));
-  else if ( typeof exports === 'object' )
-    module.exports = factory(pluginName);
-  else
-    root[pluginName] = factory(pluginName);
-}(this, function(pluginName) {
-  'use strict';
+    define([], factory(pluginName))
+  else if (typeof exports === 'object') module.exports = factory(pluginName)
+  else root[pluginName] = factory(pluginName)
+})(this, function(pluginName) {
+  'use strict'
   // Default values
   var defaults = {
     light: false,
     dark: false,
     startAt: '21:00',
     endAt: '06:00',
-    theme: false
-  };
+    checkSystemScheme: true,
+    saveOnToggle: true,
+  }
 
   /**
    * Merge defaults with user options
@@ -26,17 +22,22 @@ var head = document.getElementsByTagName('head')[0],
    * @param {Object} options User options
    */
   var extend = function(target, options) {
-    var prop, extended = {};
-    for(prop in defaults) {
-      if(Object.prototype.hasOwnProperty.call(defaults, prop))
-        extended[prop] = defaults[prop];
+    var prop,
+      extended = {}
+    for (prop in defaults) {
+      if (Object.prototype.hasOwnProperty.call(defaults, prop))
+        extended[prop] = defaults[prop]
     }
     for (prop in options) {
-      if(Object.prototype.hasOwnProperty.call(options, prop))
-        extended[prop] = options[prop];
+      if (Object.prototype.hasOwnProperty.call(options, prop))
+        extended[prop] = options[prop]
     }
-    return extended;
-  };
+    return extended
+  }
+
+  // Common DOMs
+  var Head = document.getElementsByTagName('head')[0],
+    Body = document.getElementsByTagName('body')[0]
 
   /**
    * Normalize Time
@@ -46,11 +47,11 @@ var head = document.getElementsByTagName('head')[0],
    */
   var normalizeTime = function(time) {
     var date = new Date(),
-        normalized = time.split(':');
+      normalized = time.split(':')
 
-    return date.setHours(normalized[0], normalized[1], 0, 0);
+    return date.setHours(normalized[0], normalized[1], 0, 0)
   }
-  
+
   /**
    * Include Stylesheet to document
    * @private
@@ -59,15 +60,23 @@ var head = document.getElementsByTagName('head')[0],
    * @return {Void}
    */
   var includeStyles = function(type, url) {
-    var stylesheet = document.createElement('link');
-    stylesheet.id = type;
-    stylesheet.rel = 'stylesheet';
-    stylesheet.type = 'text/css';
-    stylesheet.href = url;
-    if(head.getElementsByTagName('link')[0])
-      head.insertBefore(stylesheet, head.getElementsByTagName('link')[0]);
-    else
-      head.appendChild(stylesheet);
+    var stylesheet = document.createElement('link')
+    stylesheet.id = type
+    stylesheet.rel = 'stylesheet'
+    stylesheet.type = 'text/css'
+    stylesheet.href = url
+    if (Head.getElementsByTagName('link')[0])
+      Head.insertBefore(stylesheet, Head.getElementsByTagName('link')[0])
+    else Head.appendChild(stylesheet)
+  }
+
+  /**
+   * Get value of opposite Mode
+   * @param {String} mode
+   * @return {String} Opposite Mode
+   */
+  var oppositeMode = function(mode) {
+    return mode === 'light' ? 'dark' : 'light'
   }
 
   /**
@@ -76,8 +85,8 @@ var head = document.getElementsByTagName('head')[0],
    * @constructor
    */
   function Plugin(options) {
-    this.options = extend(defaults, options);
-    this.init();
+    this.options = extend(defaults, options)
+    this.init()
   }
 
   /**
@@ -91,68 +100,136 @@ var head = document.getElementsByTagName('head')[0],
      * @return {Void}
      */
     init: function() {
-      // Check if styles already loaded
-      var loaded = {
-        light: document.getElementById('dm-light') || false,
-        dark: document.getElementById('dm-dark') || false
+      // Clear localStorage value if options is disabled
+      if (!this.options.saveOnToggle) localStorage.removeItem('dm-mode')
+
+      var mode = this.getMode()
+
+      // Dynamic System Scheme
+      if (this.options.checkSystemScheme) {
+        var plugin = this
+
+        window
+          .matchMedia('(prefers-color-scheme: dark)')
+          .addListener(function(e) {
+            return e.matches && plugin.setMode('dark')
+          })
+
+        window
+          .matchMedia('(prefers-color-scheme: light)')
+          .addListener(function(e) {
+            return e.matches && plugin.setMode('light')
+          })
       }
 
-      var type = this.options.theme || this.getMode();
-      // Add class to body
-      body.classList.add(
-        type === 'dark'
-          ? 'dm-dark'
-          : 'dm-light'
-      );
+      this.setMode(mode)
+      return true
+    },
 
-      // Is themes exist
-      if(!loaded.light && this.options.light && type === 'light')
-        includeStyles('dm-light', this.options.light);
-      else if(!loaded.dark && this.options.dark && type === 'dark')
-        includeStyles('dm-dark', this.options.dark);
-      else
-        document.getElementById('dm-' + type).removeAttribute('disabled');
-    },
     /**
-     * Reset Initialization
-     * @return {Void}
-     */
-    resetInit: function() {
-      body.classList.remove('dm-light', 'dm-dark');
-      var light = document.getElementById('dm-light'),
-          dark = document.getElementById('dm-dark');
-      if(light)
-        light.setAttribute('disabled', 'true');
-      if(dark)
-        dark.setAttribute('disabled', 'true');
-    },
-    /**
-     * Get theme mode
-     * @return {String} type
+     * Get Mode Value
+     * @return {String}
      */
     getMode: function() {
-      if(this.options.theme)
-        return this.options.theme;
+      // Check plugin storage
+      if (this.mode) return this.mode
 
+      // Check localStorage value
+      var localStorageMode = localStorage.getItem('dm-mode')
+      if (localStorageMode) return localStorageMode
+
+      // Check System Scheme
+      if (this.options.checkSystemScheme) {
+        var systemScheme = this.getSystemScheme()
+        if (systemScheme !== 'auto') {
+          this.mode = systemScheme
+          return this.mode
+        }
+      }
+
+      // Get value based on time
       var startAt = normalizeTime(this.options.startAt),
-          endAt = normalizeTime(this.options.endAt),
-          now = new Date().getTime();
+        endAt = normalizeTime(this.options.endAt),
+        now = new Date().getTime()
 
-      return endAt < now && now > startAt ? 'dark' : 'light';
+      return endAt < now && now > startAt ? 'dark' : 'light'
     },
+
     /**
-     * Toggle Theme
+     * Set Mode
+     * @param {String} mode
      * @return {Void}
      */
-    toggleTheme: function() {
-      if(!this.options.theme)
-        this.options.theme = this.getMode() === 'dark' ? 'light' : 'dark';
-      else
-        this.options.theme = this.options.theme === 'dark' ? 'light' : 'dark';
+    setMode: function(enabledMode) {
+      if (enabledMode !== 'light' && enabledMode !== 'dark') {
+        console.error('setMode', 'Invalid value')
+        return false
+      }
 
-      this.resetInit();
-      this.init();
-    }
-  };
-  return Plugin;
-}));
+      this.mode = enabledMode
+      var disabledMode = oppositeMode(enabledMode)
+
+      // If custom styles existed – process it
+      if (this.options[enabledMode]) {
+        var enabledStyles = document.getElementById('dm-' + enabledMode),
+          disabledStyles = document.getElementById('dm-' + disabledMode)
+
+        if (!enabledStyles)
+          includeStyles('dm-' + enabledMode, this.options[enabledMode])
+        else if (!!enabledStyles) enabledStyles.removeAttribute('disabled')
+
+        if (!!disabledStyles) disabledStyles.setAttribute('disabled', true)
+      }
+
+      // Process classes on body
+      Body.classList.add('dm-' + enabledMode)
+      Body.classList.remove('dm-' + disabledMode)
+
+      return true
+    },
+
+    /**
+     * Check localStorage Value
+     */
+    isModeSaved: function() {
+      return Boolean(localStorage.getItem('dm-mode'))
+    },
+
+    /**
+     * Clear localStorage Value
+     */
+    clearSavedMode: function() {
+      localStorage.removeItem('dm-mode')
+      return true
+    },
+
+    /**
+     * Toggle Mode
+     * @return {String} Enabled Mode
+     */
+    toggleMode: function() {
+      var newMode = oppositeMode(this.mode)
+      this.setMode(newMode)
+      if (this.options.saveOnToggle) localStorage.setItem('dm-mode', newMode)
+      return newMode
+    },
+    // Deprecated function for old version
+    toggleTheme: function() {
+      return this.toggleMode()
+    },
+
+    /**
+     * Get Mode from System Scheme (css: prefers-color-scheme)
+     * @return {String} System Scheme Mode
+     */
+    getSystemScheme: function() {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches)
+        return 'dark'
+      else if (window.matchMedia('(prefers-color-scheme: light)').matches)
+        return 'light'
+      return 'auto'
+    },
+  }
+
+  return Plugin
+})

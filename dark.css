@@ -1,32 +1,30 @@
 body {
 	color: #f1f1f1;
-	background-color: #080808;
-}
-
-header {
-	border-bottom: 1px solid #aaa;
-}
-
-#mode {
 	background-color: #152121;
 }
 
-footer {
-	border-top: 1px solid #aaa;
+#mode-toggler {
+	color: #252526;
+	background-color: #fff;
 }
 
-.btn {
-	border: 1px solid #aaa;
+header,
+footer {
+	background-color: #252526;
+}
+
+.header-description {
+	color: #aaa;
 }
 
 .btn:hover {
-	border-color: #fff;
+	color: #152121;
 }
 
 pre {
-	background-color: #152121;
-	-webkit-box-shadow: 9999px 0 0 0 #152121;
-	box-shadow: 9999px 0 0 0 #152121;
+	background-color:#252526;
+	-webkit-box-shadow: 9999px 0 0 0 #252526;
+	box-shadow: 9999px 0 0 0 #252526;
 }
 
 code {

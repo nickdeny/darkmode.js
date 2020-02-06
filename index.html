@@ -44,13 +44,17 @@
           Just copy-paste this code to end of body tag:
         </p>
 <pre><code>&lt;script src="darkmode.js"&gt;&lt;/script&gt;
+&lt;script&gt;var DarkMode = new DarkMode();&lt;/script&gt;</code></pre>
+				<p>Or use it with options:</p>
+<pre><code>&lt;script src="darkmode.js"&gt;&lt;/script&gt;
 &lt;script&gt;
   var options = {
-    light: 'light.css',
-    dark: 'dark.css',
-    startAt: '23:00',
-    endAt: '06:00',
-    checkSystemScheme: false
+    light: "light.css",
+    dark: "dark.css",
+    startAt: "23:00",
+    endAt: "06:00",
+    checkSystemScheme: true,
+    saveOnToggle: true
   };
   var DarkMode = new DarkMode(options);
 &lt;/script&gt;</code></pre>

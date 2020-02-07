@@ -164,8 +164,11 @@ code {
 .contacts-reddit {
 	font-style: italic;
 	font-weight: 500;
-	color: inherit;
 	font-size: 14px;
+}
+
+.contacts-reddit > a {
+	color: inherit;
 }
 
 @media(max-width: 767px) {

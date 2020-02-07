@@ -113,11 +113,16 @@ footer {
 	text-decoration: none;
 	white-space: nowrap;
 	user-select: none;
+	background-color: #3bc4fb;
 	transition: all .15s ease;
 }
 
 .btn:hover {
 	background-color: #3bc4fb;
+}
+
+.btn:focus {
+	outline: none;
 }
 
 .container {

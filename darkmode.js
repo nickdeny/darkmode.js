@@ -106,7 +106,7 @@
       var mode = this.getMode()
 
       // Dynamic System Scheme
-      if (this.options.checkSystemScheme) {
+      if (this.options.checkSystemScheme && window.matchMedia) {
         var plugin = this
 
         window
@@ -223,10 +223,12 @@
      * @return {String} System Scheme Mode
      */
     getSystemScheme: function() {
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches)
-        return 'dark'
-      else if (window.matchMedia('(prefers-color-scheme: light)').matches)
-        return 'light'
+      if (window.matchMedia) {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches)
+          return 'dark'
+        else if (window.matchMedia('(prefers-color-scheme: light)').matches)
+          return 'light'
+      }
       return 'auto'
     },
   }

@@ -42,7 +42,7 @@
   /**
    * Normalize Time
    * @private
-   * @param {String} time Time on NN:NN format
+   * @param {String} time Time on hh:mm format
    * @return {Date}
    */
   var normalizeTime = function(time) {
@@ -152,7 +152,9 @@
         endAt = normalizeTime(this.options.endAt),
         now = new Date().getTime()
 
-      return endAt < now && now > startAt ? 'dark' : 'light'
+      return (endAt < now && now > startAt) || (startAt > now && now < endAt)
+        ? 'dark'
+        : 'light'
     },
 
     /**

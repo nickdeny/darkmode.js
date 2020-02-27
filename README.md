@@ -50,7 +50,7 @@ Event | Description
 `getMode()` | Get current Mode
 `setMode("light"/"dark")` | Set Mode
 `isModeSaved()` | Check is Mode saved (Local Storage)
-`clearSavedMode()` | Remove Mode value (Local Storage), set Mode
+`clearSavedMode()` | Remove Mode value (Local Storage), reinit Mode
 `toggleMode()` | Toggle current Mode
 `getSystemScheme()` | Get System Scheme (Returns `light`/`dark`/`auto`)
 

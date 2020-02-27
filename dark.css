@@ -3,6 +3,7 @@ body {
 	background-color: #152121;
 }
 
+#mode-remover,
 #mode-toggler {
 	color: #252526;
 	background-color: #fff;

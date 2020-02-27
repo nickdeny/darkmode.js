@@ -87,10 +87,15 @@ footer {
 	color: inherit;
 }
 
-#mode-toggler {
+.flying {
 	position: fixed;
 	bottom: 30px;
 	right: 30px;
+	display: flex;
+	align-items: center;
+}
+
+#mode-toggler {
 	font-size: 22px;
 	padding: 15px 30px;
 	border-radius: 50px;
@@ -99,21 +104,36 @@ footer {
 	border: 0;
 }
 
+#mode-remover {
+	padding: 8px;
+	width: 34px;
+	margin-right: 10px;
+	border-radius: 50%;
+	font-size: 18px;
+	font-weight: 700;
+	border: 0;
+	transition: opacity .15s ease, visibility .15s ease;
+}
+
+#mode-remover.hidden {
+	opacity: 0;
+	visibility: hidden;
+}
+
 .btn {
 	display: inline-block;
 	cursor: pointer;
 	padding: 8px 16px;
 	border: 2px solid #3bc4fb;
-	font-weight: 600;
 	text-transform: uppercase;
-	font-size: 18px;
+	font-size: 14px;
+	font-weight: 700;
 	line-height: 1;
 	color: inherit;
 	background-color: transparent;
 	text-decoration: none;
 	white-space: nowrap;
 	user-select: none;
-	background-color: #3bc4fb;
 	transition: all .15s ease;
 }
 
@@ -149,7 +169,7 @@ code {
 }
 
 .contacts-btns {
-	padding: 0 0 30px 0;
+	padding: 10px 0 10px 0;
 	margin: -10px;
 	display: flex;
 	flex-flow: row wrap;
@@ -162,6 +182,7 @@ code {
 }
 
 .contacts-reddit {
+	padding-top: 30px;
 	font-style: italic;
 	font-weight: 500;
 	font-size: 14px;

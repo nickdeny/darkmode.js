@@ -1,3 +1,5 @@
+/*! DarkModeJS by nickdeny (v1.2): https://github.com/nickdeny/darkmode-js */
+
 ;(function(root, factory) {
   var pluginName = 'DarkMode'
   if (typeof define === 'function' && define.amd)
@@ -202,6 +204,8 @@
      */
     clearSavedMode: function() {
       localStorage.removeItem('dm-mode')
+      this.mode = null
+      this.setMode(this.getMode())
       return true
     },
 
@@ -214,10 +218,6 @@
       this.setMode(newMode)
       if (this.options.saveOnToggle) localStorage.setItem('dm-mode', newMode)
       return newMode
-    },
-    // Deprecated function for old version
-    toggleTheme: function() {
-      return this.toggleMode()
     },
 
     /**

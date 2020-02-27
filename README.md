@@ -1,5 +1,5 @@
 # DarkModeJS
-Lightweight and cross-browser DarkModeJS helps you to auto detect user's time and switch theme to darkside. Also, it's weight only 2,5kb and written on pure Javascript, without any plugins and jQuery!
+Lightweight and cross-browser DarkModeJS helps you to auto detect user's time and switch theme to darkside. Also, it's weight only 2,6kb and written on pure Javascript, without any plugins and jQuery!
 
 ## Demo
 You can test on: https://nickdeny.github.io/darkmode-js/
@@ -49,8 +49,8 @@ Event | Description
 --- | ---
 `getMode()` | Get current Mode
 `setMode("light"/"dark")` | Set Mode
-`isModeSaved()` | Check is mode saved (Local Storage)
-`clearSavedMode()` | Remove mode value (Local Storage)
+`isModeSaved()` | Check is Mode saved (Local Storage)
+`clearSavedMode()` | Remove Mode value (Local Storage), set Mode
 `toggleMode()` | Toggle current Mode
 `getSystemScheme()` | Get System Scheme (Returns `light`/`dark`/`auto`)
 

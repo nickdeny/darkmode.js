@@ -1,5 +1,5 @@
 # DarkModeJS
-Lightweight and cross-browser DarkModeJS helps you to auto detect user's time and switch theme to darkside. Also, it's weight only 2,6kb and written on pure Javascript, without any plugins and jQuery!
+Lightweight and cross-browser DarkModeJS helps you to auto detect user's time and switch theme to darkside. Also, it's weight only **2.39KB** and written on pure Javascript, without any plugins and jQuery!
 
 ## Demo
 You can test on: https://nickdeny.github.io/darkmode-js/

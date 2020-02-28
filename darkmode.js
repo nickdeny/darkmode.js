@@ -105,27 +105,22 @@
       // Clear localStorage value if options is disabled
       if (!this.options.saveOnToggle) localStorage.removeItem('dm-mode')
 
-      var mode = this.getMode()
-
       // Dynamic System Scheme
-      if (this.options.checkSystemScheme && window.matchMedia) {
+      if (window.matchMedia && this.options.checkSystemScheme) {
         var plugin = this
+        setSystemScheme('light')
+        setSystemScheme('dark')
 
-        window
-          .matchMedia('(prefers-color-scheme: dark)')
-          .addListener(function(e) {
-            return e.matches && plugin.setMode('dark')
-          })
-
-        window
-          .matchMedia('(prefers-color-scheme: light)')
-          .addListener(function(e) {
-            return e.matches && plugin.setMode('light')
-          })
+        function setSystemScheme(mode) {
+          window
+            .matchMedia('(prefers-color-scheme: ' + mode + ')')
+            .addListener(function(e) {
+              return e.matches && plugin.setMode(mode)
+            })
+        }
       }
 
-      this.setMode(mode)
-      return true
+      return this.setMode(this.getMode())
     },
 
     /**
@@ -141,13 +136,8 @@
       if (localStorageMode) return localStorageMode
 
       // Check System Scheme
-      if (this.options.checkSystemScheme) {
-        var systemScheme = this.getSystemScheme()
-        if (systemScheme !== 'auto') {
-          this.mode = systemScheme
-          return this.mode
-        }
-      }
+      if (window.matchMedia && this.options.checkSystemScheme)
+        return this.getSystemScheme()
 
       // Get value based on time
       var startAt = normalizeTime(this.options.startAt),
@@ -225,13 +215,10 @@
      * @return {String} System Scheme Mode
      */
     getSystemScheme: function() {
-      if (window.matchMedia) {
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches)
-          return 'dark'
-        else if (window.matchMedia('(prefers-color-scheme: light)').matches)
-          return 'light'
-      }
-      return 'auto'
+      return window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light'
     },
   }
 
